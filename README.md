@@ -18,12 +18,16 @@ Multimodal data fusion to enhance recognition through sensor integration
 
 4.1 Clone the Repository  
 To get started, clone this repository using:  
-git clone https://github.com/cryptoseek.git  
-cd your-repo-name  
+
+```bash
+git clone https://github.com/xubtoi/cryptoseek.git
+cd cryptoseek
+```
 
 4.2 Installation  
 Software Setup: Install and configure the application on a compatible device  
-System Initialization: Start the application to activate real-time recognition  
+System Initialization: Start the application to activate real-time recognition
+
 
 4.3 How to Use  
 Object Recognition: The system detects objects and announces their presence via voice feedback  
