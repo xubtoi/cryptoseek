@@ -1,6 +1,5 @@
 # cryptoseek
-This is the AT2 of 42174
-AI-Powered Assistive System for the Visually Impaired  
+This is the AI-Powered Assistive System for the Visually Impaired  
 
   1. Project Overview  
 This project aims to provide an AI-powered assistive system for visually impaired individuals, enabling real-time object recognition to enhance spatial awareness and independence. The system identifies objects in the environment and provides instant voice feedback, allowing users to navigate more safely and confidently.  
