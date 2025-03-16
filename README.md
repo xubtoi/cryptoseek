@@ -14,36 +14,16 @@ Low-power AI processing optimized for efficiency and responsiveness
 Multimodal data fusion to enhance recognition through sensor integration  
 
   4. Installation & Usage  
-
-  4.1 Clone the Repository  
-To get started, clone this repository using:  
-
-```bash
-git clone https://github.com/xubtoi/cryptoseek.git
-cd cryptoseek
-```
-
-  4.2 Installation  
-Software Setup: Install and configure the application on a compatible device  
-System Initialization: Start the application to activate real-time recognition
-
-
-  4.3 How to Use  
-Object Recognition: The system detects objects and announces their presence via voice feedback  
-Custom Voice Settings: Users can adjust the speech output settings, including volume and language  
+Google Colab link: https://colab.research.google.com/drive/1PHygsfTefGJhfW1rghIdnnIKatcpkfu1?usp=sharing
 
   5. Dataset  
 This project utilizes the Pascal VOC dataset for training and evaluation  
-Download Pascal VOC 2012: http://host.robots.ox.ac.uk/pascal/VOC/voc2012/  
-Download Pascal VOC 2007: http://host.robots.ox.ac.uk/pascal/VOC/voc2007/  
+Download Pascal VOC 2012: http://host.robots.ox.ac.uk/pascal/VOC/voc2012/    
 
-6. Future Plans  
-  Enhance recognition algorithms to improve accuracy and speed  
+  6. Future Plans  
+Enhance recognition algorithms to improve accuracy and speed  
 Conduct user testing in collaboration with NGOs to refine functionality  
 Explore integration with navigation systems and voice assistants  
 
-  7. License  
-This project is licensed under the MIT License. See the LICENSE file for details.  
-
-  8. Contributors & Acknowledgments  
+  7. Contributors & Acknowledgments  
 Special thanks to all team members for their contributions to development and optimization.
