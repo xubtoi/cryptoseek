@@ -5,7 +5,7 @@ This is the AI-Powered Assistive System for the Visually Impaired
 This project aims to provide an AI-powered assistive system for visually impaired individuals, enabling real-time object recognition to enhance spatial awareness and independence. The system identifies objects in the environment and provides instant voice feedback, allowing users to navigate more safely and confidently.  
 
   2. Target Users  
-The system is designed for blind or partially visually impaired individuals, particularly those in urban environments who rely on real-time assistance for navigation. According to the Global Burden of Disease Study (2020), there were 43 million blind individuals and 295 million people with moderate-to-severe visual impairment worldwide. This project aims to assist a portion of this population by providing reliable object recognition and voice-based guidance.  
+The system is designed for blind or partially visually impaired individuals, particularly those in urban environments who rely on real-time assistance for navigation. Globally, 43 million people were blind in 2020 (Bourne et al., 2021). This project aims to assist a portion of this population by providing reliable object recognition and voice-based guidance.  
 
   3. Key Features  
 Real-time object recognition that detects common objects in the environment  
