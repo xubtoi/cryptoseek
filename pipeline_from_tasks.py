@@ -16,7 +16,7 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_id='6dbb1e8f806143e4a7307ba35a262b0a',
+        base_task_id='24a61ad5475b419cb613a017efbda512',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
         execution_queue=EXECUTION_QUEUE,
@@ -31,7 +31,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_id='59447879fc84450bb079c2d2970dca9c',
+        base_task_id='e4caf42d153d43cebf19a3063d3f431e',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
         execution_queue=EXECUTION_QUEUE,
@@ -54,7 +54,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
-        base_task_id='603875be18f04fb2a5914f459c8e75fd',
+        base_task_id='d8e90e791b3044f6b13576edc294ee24',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
         execution_queue=EXECUTION_QUEUE,
