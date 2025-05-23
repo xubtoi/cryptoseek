@@ -1,0 +1,9 @@
+PyYAML == 6.0.2
+clearml == 1.18.0
+google_cloud_storage == 2.19.0
+https://download.pytorch.org/whl/cu124/torch-2.6.0%2Bcu124-cp311-cp311-linux_x86_64.whl
+matplotlib == 3.10.0
+pandas == 2.2.2
+tensorboard == 2.18.0
+ultralytics == 8.3.126
+torchvision == 0.21.0

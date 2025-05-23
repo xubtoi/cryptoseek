@@ -8,6 +8,7 @@ from clearml import Task, Logger, Dataset
 from ultralytics import YOLO
 import torch
 import yaml
+import pandas as pd
 
 def Training():
     # === Initialize ClearML Task ===
@@ -27,6 +28,8 @@ def Training():
         'batch': 16
     }
     task.connect(args)
+
+    task.execute_remotely()
 
     # === Load YOLO-format Dataset (v1.0.4) ===
     dataset = Dataset.get(
@@ -55,13 +58,15 @@ def Training():
     # === Load YOLO model and start training ===
     model = YOLO(args['model_arch'])
 
+    device = 0 if torch.cuda.is_available() else 'cpu'
+
     results = model.train(
         data=dataset_yaml_path,
         epochs=args['epochs'],
         imgsz=args['img_size'],
         batch=args['batch'],
         lr0=args['learning_rate'],
-        device=0,
+        device=device,
         augment=True,
         hsv_h=0.015, hsv_s=0.7, hsv_v=0.4,
         degrees=10.0, translate=0.1, scale=0.5, shear=2.0,
@@ -75,7 +80,6 @@ def Training():
     metrics_file = os.path.join(save_dir, 'results.csv')
     
     if os.path.exists(metrics_file):
-        import pandas as pd
         df = pd.read_csv(metrics_file)
         for idx, row in df.iterrows():
             if 'train/box_loss' in row:
@@ -84,6 +88,15 @@ def Training():
                 logger.report_scalar("Loss", "cls_loss", row['train/cls_loss'], iteration=idx)
             if 'train/dfl_loss' in row:
                 logger.report_scalar("Loss", "dfl_loss", row['train/dfl_loss'], iteration=idx)
+            # Detection metrics
+            if 'metrics/precision(B)' in row:
+                logger.report_scalar("Metrics", "Precision", row['metrics/precision(B)'], iteration=idx)
+            if 'metrics/recall(B)' in row:
+                logger.report_scalar("Metrics", "Recall", row['metrics/recall(B)'], iteration=idx)
+            if 'metrics/mAP_0.5(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP_0.5(B)'], iteration=idx)
+            if 'metrics/mAP_0.5:0.95(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP_0.5:0.95(B)'], iteration=idx)
 
     # === Upload best.pt as ClearML artifact ===
     best_model_path = os.path.join(save_dir, "weights", "best.pt")
