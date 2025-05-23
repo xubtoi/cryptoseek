@@ -65,7 +65,7 @@ def run_pipeline():
     )
 
     # Choose one of the launch methods
-    pipe.start_locally()  # Local debugging
-    # pipe.start(queue="pipeline")  # For remote agent execution
+    # pipe.start_locally()  # Local debugging
+    pipe.start(queue="pipeline")  # For remote agent execution
 
     print("done")

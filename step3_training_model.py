@@ -29,7 +29,7 @@ def Training():
     }
     task.connect(args)
 
-    # task.execute_remotely()
+    task.execute_remotely()
 
     # === Load YOLO-format Dataset (v1.0.4) ===
     dataset = Dataset.get(
