@@ -28,7 +28,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_id='783135a3dca7406982082269eb723742',
+        base_task_id='d64c341ee1f34cfc86777a1be8818a6b',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
         parameter_override={
@@ -50,7 +50,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
-        base_task_id='bd1804588ec14b619d91eb672ebe1991',
+        base_task_id='c0b726853a084f4c94e6a2661aa7d7fa',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
         parameter_override={
