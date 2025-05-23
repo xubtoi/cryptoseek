@@ -14,7 +14,7 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_id='29fdad4f3539433e867384c6ef08dcfb',
+        base_task_id='783135a3dca7406982082269eb723742',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
         parameter_override={
@@ -28,8 +28,9 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_project="CryptoSeek",
-        base_task_name="Step 2 - Dataset Preprocessing",
+        base_task_id='783135a3dca7406982082269eb723742',
+        # base_task_project="CryptoSeek",
+        # base_task_name="Step 2 - Dataset Preprocessing",
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',  # Project name in ClearML
             "General/input_dataset_name": 'Resized_Cityscapes',  # Dataset name (v1.0.1 input)
@@ -49,9 +50,9 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
+        base_task_id='bd1804588ec14b619d91eb672ebe1991',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
-        base_task_id='bd1804588ec14b619d91eb672ebe1991',
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',
             "General/input_dataset_name": 'Resized_Cityscapes',
