@@ -2,7 +2,7 @@ name: Run CryptoSeek Pipeline
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   run_pipeline:
