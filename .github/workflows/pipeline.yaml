@@ -34,4 +34,4 @@ jobs:
 
       - name: Run pipeline
         run: |
-          python step1_dataset_artifact
+          python step1_dataset_artifact.py
