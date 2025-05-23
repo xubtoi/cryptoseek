@@ -1,6 +1,8 @@
 from clearml import PipelineController, PipelineDecorator, Task
 import os
 
+EXECUTION_QUEUE = 'pipeline'
+
 def run_pipeline():
     pipe = PipelineController(
         name="CryptoSeek Full Pipeline",
@@ -9,7 +11,7 @@ def run_pipeline():
         add_pipeline_tags=False
     )
 
-    pipe.set_default_execution_queue("pipeline")  # Replace with your ClearML queue name
+    pipe.set_default_execution_queue(EXECUTION_QUEUE)  # Replace with your ClearML queue name
 
     # Step 1: Create dataset artifact
     pipe.add_step(
@@ -17,6 +19,7 @@ def run_pipeline():
         base_task_id='783135a3dca7406982082269eb723742',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
+        execution_queue=EXECUTION_QUEUE,
         parameter_override={
             "General/input_dataset_version": "1.0.0",
             "General/output_tag": ['step1', 'v1.0'],
@@ -31,6 +34,7 @@ def run_pipeline():
         base_task_id='d64c341ee1f34cfc86777a1be8818a6b',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
+        execution_queue=EXECUTION_QUEUE,
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',  # Project name in ClearML
             "General/input_dataset_name": 'Resized_Cityscapes',  # Dataset name (v1.0.1 input)
@@ -53,6 +57,7 @@ def run_pipeline():
         base_task_id='c0b726853a084f4c94e6a2661aa7d7fa',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
+        execution_queue=EXECUTION_QUEUE,
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',
             "General/input_dataset_name": 'Resized_Cityscapes',
@@ -66,8 +71,7 @@ def run_pipeline():
     )
 
     # Choose one of the launch methods
-    # pipe.start_locally()  # Local debugging
-    pipe.start(queue="pipeline")  # For remote agent execution
+    pipe.start_locally()  # Local debugging
+    # pipe.start(queue="pipeline")  # For remote agent execution
 
     print("done")
-# 1
