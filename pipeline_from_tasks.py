@@ -14,9 +14,14 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_project="CryptoSeek",
-        base_task_name="Step 1 - Dataset Artifact",
-        parameter_override={"General/input_dataset_version": "1.0.0"},
+        base_task_id='29fdad4f3539433e867384c6ef08dcfb',
+        # base_task_project="CryptoSeek",
+        # base_task_name="Step 1 - Dataset Artifact",
+        parameter_override={
+            "General/input_dataset_version": "1.0.0",
+            "General/output_tag": ['step1', 'v1.0'],
+            "General/output_id": '57a2ad12e6a3428fae3317d1cb6f12b5',
+        },
     )
 
     # Step 2: Data preprocessing (depends on Step 1)
@@ -32,6 +37,8 @@ def run_pipeline():
             "General/input_width": 640,
             "General/input_height": 640,
             "General/output_dir": 'dataset',
+            "General/output_tag": ['step2', 'v1.0'],
+            "General/output_id": '9fa4d7e8172b4c70867e77849813f2a5',
             "General/classes": ["person", "rider", "car", "truck", "bus", "train", "motorcycle", "bicycle", "traffic light", "traffic sign"],  # Target object classes
             "General/test_split_ratio": 0.1,  # Proportion of train data to use for test set
             "General/random_seed": 42  # Random seed for reproducibility
@@ -58,7 +65,7 @@ def run_pipeline():
     )
 
     # Choose one of the launch methods
-    pipe.start_locally()  # Local debugging
-    # pipe.start(queue="pipeline")  # For remote agent execution
+    # pipe.start_locally()  # Local debugging
+    pipe.start(queue="pipeline")  # For remote agent execution
 
     print("done")

@@ -10,7 +10,7 @@ args = {
 }
 task.connect(args)
 
-# task.execute_remotely()
+task.execute_remotely()
 
 def FindMatchedDataset(ID):
     try:
