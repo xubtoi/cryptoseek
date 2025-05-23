@@ -2,7 +2,7 @@ name: Run CryptoSeek Pipeline
 
 on:
   pull_request:
-    branches: [CICD]
+    branches: [main]
 
 jobs:
   run_pipeline:
@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements_local.txt
 
       - name: Debug ENV
         run: |
