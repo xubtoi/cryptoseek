@@ -34,4 +34,4 @@ jobs:
 
       - name: Run pipeline
         run: |
-          python step3_training_model.py
+          python step2_dataset_preprocessing.py
