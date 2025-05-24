@@ -83,7 +83,7 @@ def run_pipeline():
             "General/dataset_id": "${stage_process.parameters.General/output_id}",
             "General/test_queue": EXECUTION_QUEUE,
             "General/num_trials": 5,
-            "General/time_limit_minutes": 30,
+            "General/time_limit_minutes": 60,
             "General/run_as_service": False,
             "General/base_train_task_id": "${stage_train.id}"
         }
