@@ -37,7 +37,7 @@ def Training():
     args = task.connect(args)
     # logger.info(f"Connected parameters: {args}")
 
-    task.execute_remotely()
+    # task.execute_remotely()
 
     # === Load dataset ===
     dataset_id = args.get('input_dataset_id')
