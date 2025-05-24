@@ -65,7 +65,7 @@ logger.info(f"Connected parameters: {args}")
 hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
-        UniformIntegerParameterRange('epochs', min_value=20, max_value=60, step_size=20),
+        UniformIntegerParameterRange('epochs', min_value=20, max_value=40, step_size=20),
         UniformIntegerParameterRange('batch', min_value=8, max_value=32, step_size=8),  # Reduced range
         UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],
@@ -118,6 +118,8 @@ hpo_task = HyperParameterOptimizer(
     #     'General/weight_decay': args['weight_decay']
     # }
 )
+
+hpo_task.set_time_limit(in_minutes=args['time_limit_minutes'])
 
 # Start the HPO task
 logger.info("Starting HPO task...")
