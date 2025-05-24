@@ -140,7 +140,7 @@ try:
         best_params = best_exp.get_parameters()
         metrics = best_exp.get_last_scalar_metrics()
         # best_accuracy = metrics['validation']['accuracy'] if metrics and 'validation' in metrics and 'accuracy' in metrics['validation'] else None
-        best_map = metrics['Metrics']['mAP@0.5']['value'] if 'Metrics' in metrics and 'mAP@0.5' in metrics['Metrics'] else None
+        best_map = metrics['Metrics']['mAP@0.5'] if 'Metrics' in metrics and 'mAP@0.5' in metrics['Metrics'] else None
         
         # Log detailed information about the best experiment
         logger.info("Best hyperparameters:")

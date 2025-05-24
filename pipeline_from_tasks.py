@@ -66,7 +66,7 @@ def run_pipeline():
             "General/input_dataset_id": '9fa4d7e8172b4c70867e77849813f2a5',
             "General/model_arch": 'yolo11s.pt',  # Model architecture (nano by default)
             "General/img_size": 640,
-            "General/epochs": 10,
+            "General/epochs": 5,
             "General/learning_rate": 0.001,
             "General/batch": 16
         },
@@ -74,7 +74,7 @@ def run_pipeline():
 
     pipe.add_step(
         name="stage_hpo",
-        parents=["stage_train", "stage_process", "stage_data"],
+        parents=["stage_train", "stage_process"],
         base_task_id='8b9c6a6557f24027b1cb589b80d43dc9',
         # base_task_project="AI_Studio_Demo",
         # base_task_name="HPO: Train Model",
@@ -86,6 +86,20 @@ def run_pipeline():
             "General/time_limit_minutes": 60,
             "General/run_as_service": False,
             "General/base_train_task_id": "${stage_train.id}"
+        }
+    )
+    
+    pipe.add_step(
+        name="stage_final",
+        parents=["stage_hpo", "stage_process"],
+        base_task_id='',
+        # base_task_project="CryptoSeek",
+        # base_task_name="Step 5 - Final Model Training",
+        execution_queue=EXECUTION_QUEUE,
+        parameter_override={
+            "input_dataset_id": "${stage_process.parameters.General/output_id}",
+            "hpo_task_id": "${stage_hpo.id}",
+            "model_arch": "yolo11s.pt"
         }
     )
 

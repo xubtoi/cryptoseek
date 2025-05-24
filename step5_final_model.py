@@ -6,13 +6,13 @@ matplotlib.use("Agg")
 
 from clearml import Task, Logger, Dataset
 from ultralytics import YOLO
-import os
 import json
-import logging
 import torch
-from ultralytics import YOLO
-import matplotlib.pyplot as plt
 import pandas as pd
+# import logging
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# from sklearn.metrics import confusion_matrix
 
 # Setup logging
 # logging.basicConfig(level=logging.INFO)
@@ -36,6 +36,8 @@ def Training():
     }
     args = task.connect(args)
     # logger.info(f"Connected parameters: {args}")
+
+    task.execute_remotely()
 
     # === Load dataset ===
     dataset_id = args.get('input_dataset_id')
@@ -63,7 +65,7 @@ def Training():
         raise ValueError("Best hyperparameters not found in HPO task")
 
     # === Override args with best parameters ===
-    args['epochs'] = int(best_params.get('epochs', args['epochs']))
+    # args['epochs'] = int(best_params.get('epochs', args['epochs']))
     args['batch'] = int(best_params.get('batch', args['batch']))
     args['learning_rate'] = float(best_params.get('learning_rate', args['learning_rate']))
     # logger.info(f"Using HPO parameters: {best_params}")
@@ -110,8 +112,7 @@ def Training():
                 logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP50(B)'], iteration=idx)
             if 'metrics/mAP50-95(B)' in row:
                 logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP50-95(B)'], iteration=idx)
-    
-    logger.report_matplotlib_figure('Confusion Matrix', 'confusion_matrix', plt.gcf(), epoch)
+
     # === Upload final model ===
     best_model_path = os.path.join(save_dir, 'weights', 'best.pt')
     if os.path.exists(best_model_path):
