@@ -82,10 +82,8 @@ hpo_task = HyperParameterOptimizer(
     execution_queue=args['test_queue'],
     save_top_k_tasks_only=2,
     parameter_override={
-        'processed_dataset_id': args['dataset_id'],
-        'General/processed_dataset_id': args['dataset_id'],
-        'test_queue': args['test_queue'],
-        'General/test_queue': args['test_queue'],
+        'input_dataset_id': args['dataset_id'],
+        'General/input_dataset_id': args['dataset_id'],
         'epochs': args['epochs'],
         'General/epochs': args['epochs'],
         'batch': args['batch_size'],

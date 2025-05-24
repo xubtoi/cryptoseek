@@ -20,7 +20,8 @@ def Training():
     args = {
         'input_dataset_project': 'CryptoSeek',
         'input_dataset_name': 'Resized_Cityscapes',
-        'input_dataset_version': '1.0.2',     
+        'input_dataset_version': '1.0.2',
+        'input_dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',     
         'model_arch': 'yolo11s.pt',  # Model architecture (nano by default)
         'img_size': 640,
         'epochs': 200,
@@ -33,9 +34,10 @@ def Training():
 
     # === Load YOLO-format Dataset (v1.0.4) ===
     dataset = Dataset.get(
-        dataset_project=args['input_dataset_project'],
-        dataset_name=args['input_dataset_name'],
-        dataset_version=args['input_dataset_version']
+        dataset_id=args['input_dataset_id']
+        # dataset_project=args['input_dataset_project'],
+        # dataset_name=args['input_dataset_name'],
+        # dataset_version=args['input_dataset_version']
     )
     local_dataset_path = dataset.get_local_copy()
 
