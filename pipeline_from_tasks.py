@@ -75,7 +75,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_hpo",
         parents=["stage_train", "stage_process"],
-        base_task_id='8b9c6a6557f24027b1cb589b80d43dc9',
+        base_task_id='e919e95feba24c1f9ad176dcec5ab1ce',
         # base_task_project="AI_Studio_Demo",
         # base_task_name="HPO: Train Model",
         execution_queue=EXECUTION_MAIN,
@@ -92,7 +92,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_final",
         parents=["stage_hpo", "stage_process"],
-        base_task_id='',
+        base_task_id='973e716615e24a4ab83208d9285ad970',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 5 - Final Model Training",
         execution_queue=EXECUTION_QUEUE,
