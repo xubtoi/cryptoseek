@@ -82,13 +82,13 @@ hpo_task = HyperParameterOptimizer(
     execution_queue=args['test_queue'],
     save_top_k_tasks_only=2,
     parameter_override={
-        'input_dataset_id': args['dataset_id'],
+        # 'input_dataset_id': args['dataset_id'],
         'General/input_dataset_id': args['dataset_id'],
-        'epochs': args['epochs'],
+        # 'epochs': args['epochs'],
         'General/epochs': args['epochs'],
-        'batch': args['batch_size'],
+        # 'batch': args['batch_size'],
         'General/batch': args['batch_size'],
-        'learning_rate': args['learning_rate'],
+        # 'learning_rate': args['learning_rate'],
         'General/learning_rate': args['learning_rate'],
     }
     # objective_metric_title='validation',
