@@ -15,7 +15,7 @@ task = Task.init(project_name='CryptoSeek', task_name='Step 4 - Hyperparameter O
 
 # Connect parameters
 args = {
-    'base_train_task_id': 'e66005a3afc54219a5f210a610fd8fac ',  # Will be set from pipeline
+    'base_train_task_id': 'e66005a3afc54219a5f210a610fd8fac',  # Will be set from pipeline
     'num_trials': 5,  # Reduced from 10 to 3 trials
     'time_limit_minutes': 60,  # Reduced from 60 to 5 minutes
     'run_as_service': False,
@@ -118,8 +118,6 @@ hpo_task = HyperParameterOptimizer(
     #     'General/weight_decay': args['weight_decay']
     # }
 )
-
-hpo_task.set_time_limit(in_minutes=args['time_limit_minutes'])
 
 # Start the HPO task
 logger.info("Starting HPO task...")
