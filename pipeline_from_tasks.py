@@ -16,7 +16,7 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_id='4ae5edfd7cee4ceda1986e6f1dc69cbe',
+        base_task_id='8646a14bd3d34cfd9dc0fd257b8797b5',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
         execution_queue=EXECUTION_QUEUE,
@@ -31,7 +31,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_id='c966987f56184c0f9264c22a6fb89c71',
+        base_task_id='9cb553292be3469d91afeaa25f6112fd',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
         execution_queue=EXECUTION_QUEUE,

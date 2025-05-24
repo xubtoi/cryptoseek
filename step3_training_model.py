@@ -95,10 +95,10 @@ def Training():
                 logger.report_scalar("Metrics", "Precision", row['metrics/precision(B)'], iteration=idx)
             if 'metrics/recall(B)' in row:
                 logger.report_scalar("Metrics", "Recall", row['metrics/recall(B)'], iteration=idx)
-            if 'metrics/mAP_0.5(B)' in row:
-                logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP_0.5(B)'], iteration=idx)
-            if 'metrics/mAP_0.5:0.95(B)' in row:
-                logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP_0.5:0.95(B)'], iteration=idx)
+            if 'metrics/mAP50(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP50(B)'], iteration=idx)
+            if 'metrics/mAP50-95(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP50-95(B)'], iteration=idx)
 
     # === Upload best.pt as ClearML artifact ===
     best_model_path = os.path.join(save_dir, "weights", "best.pt")
