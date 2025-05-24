@@ -17,7 +17,7 @@ task = Task.init(project_name='CryptoSeek', task_name='Step 4 - Hyperparameter O
 args = {
     'base_train_task_id': 'e66005a3afc54219a5f210a610fd8fac',  # Will be set from pipeline
     'num_trials': 5,  # Reduced from 10 to 3 trials
-    'time_limit_minutes': 60,  # Reduced from 60 to 5 minutes
+    'time_limit_minutes': 5,  # Reduced from 60 to 5 minutes
     'run_as_service': False,
     'test_queue': 'pipeline',  # Queue for test tasks
     'dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',  # Will be set from pipeline
