@@ -113,5 +113,9 @@
         "General/tracker": "botsort.yaml",
         "General/save_dir": "runs/detect/train"
     },
-    "mAP@0.5": null
+    "mAP@0.5": {
+        "last": 0.51243,
+        "min": 0.16631,
+        "max": 0.53384
+    }
 }
