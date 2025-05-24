@@ -8,7 +8,7 @@ def run_pipeline():
     pipe = PipelineController(
         name="CryptoSeek Full Pipeline",
         project="CryptoSeek",
-        version="0.0.1",
+        version="0.0.2",
         add_pipeline_tags=False
     )
 
