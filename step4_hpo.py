@@ -65,7 +65,7 @@ task.execute_remotely()
 hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
-        UniformIntegerParameterRange('num_epochs', min_value=50, max_value=200, step_size=50),
+        UniformIntegerParameterRange('num_epochs', min_value=20, max_value=100, step_size=20),
         UniformIntegerParameterRange('batch_size', min_value=8, max_value=32, step_size=8),  # Reduced range
         UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],

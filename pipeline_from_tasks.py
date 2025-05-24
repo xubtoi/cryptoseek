@@ -70,6 +70,23 @@ def run_pipeline():
         },
     )
 
+    pipe.add_step(
+        name="stage_hpo",
+        parents=["stage_train", "stage_process", "stage_data"],
+        base_task_id='',
+        # base_task_project="AI_Studio_Demo",
+        # base_task_name="HPO: Train Model",
+        execution_queue=EXECUTION_QUEUE,
+        parameter_override={
+            "General/dataset_id": "${stage_process.parameters.General/output_id}",
+            "General/test_queue": EXECUTION_QUEUE,
+            "General/num_trials": 5,
+            "General/time_limit_minutes": 30,
+            "General/run_as_service": False,
+            "General/base_train_task_id": "${stage_train.id}"
+        }
+    )
+    
     # Choose one of the launch methods
     pipe.start_locally()  # Local debugging
     # pipe.start(queue="pipeline")  # For remote agent execution
