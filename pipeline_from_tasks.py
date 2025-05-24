@@ -54,7 +54,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
-        base_task_id='f7e9ff83e9c340258ab093d1cf4d0783',
+        base_task_id='49a5752d4279490bb8fbe8dc35ac386a',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
         execution_queue=EXECUTION_QUEUE,
