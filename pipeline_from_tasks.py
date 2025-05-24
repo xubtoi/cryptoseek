@@ -66,7 +66,7 @@ def run_pipeline():
             "General/input_dataset_id": '9fa4d7e8172b4c70867e77849813f2a5',
             "General/model_arch": 'yolo11s.pt',  # Model architecture (nano by default)
             "General/img_size": 640,
-            "General/epochs": 200,
+            "General/epochs": 10,
             "General/learning_rate": 0.001,
             "General/batch": 16
         },
