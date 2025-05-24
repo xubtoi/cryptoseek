@@ -73,7 +73,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_hpo",
         parents=["stage_train", "stage_process", "stage_data"],
-        base_task_id='4aa2c0e961e14e738410df82bfe6d648',
+        base_task_id='e5d11ac6954a44a48ee4efa6f83f6972',
         # base_task_project="AI_Studio_Demo",
         # base_task_name="HPO: Train Model",
         execution_queue=EXECUTION_QUEUE,
