@@ -30,7 +30,7 @@ def Training():
         'hpo_task_id': '8b9c6a6557f24027b1cb589b80d43dc9',
         'model_arch': 'yolo11s.pt',
         'img_size': 640,
-        'epochs': 100,
+        'epochs': 5,
         'learning_rate': 0.001,
         'batch': 16,
     }

@@ -97,9 +97,10 @@ def run_pipeline():
         # base_task_name="Step 5 - Final Model Training",
         execution_queue=EXECUTION_QUEUE,
         parameter_override={
-            "input_dataset_id": "${stage_process.parameters.General/output_id}",
-            "hpo_task_id": "${stage_hpo.id}",
-            "model_arch": "yolo11s.pt"
+            "General/input_dataset_id": "${stage_process.parameters.General/output_id}",
+            "General/hpo_task_id": "${stage_hpo.id}",
+            "General/model_arch": "yolo11s.pt",
+            "General/epochs": 100,
         }
     )
 
