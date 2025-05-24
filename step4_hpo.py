@@ -65,9 +65,9 @@ logger.info(f"Connected parameters: {args}")
 hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
-        UniformIntegerParameterRange('epochs', min_value=20, max_value=60, step_size=20),
-        UniformIntegerParameterRange('batch', min_value=8, max_value=32, step_size=8),  # Reduced range
-        UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
+        UniformIntegerParameterRange('General/epochs', min_value=20, max_value=60, step_size=20),
+        UniformIntegerParameterRange('General/batch', min_value=8, max_value=32, step_size=8),  # Reduced range
+        UniformParameterRange('General/learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],
     objective_metric_title='Metrics',
     objective_metric_series='mAP@0.5',
@@ -82,13 +82,13 @@ hpo_task = HyperParameterOptimizer(
     execution_queue=args['test_queue'],
     save_top_k_tasks_only=2,
     parameter_override={
-        # 'input_dataset_id': args['dataset_id'],
+        'input_dataset_id': args['dataset_id'],
         'General/input_dataset_id': args['dataset_id'],
-        # 'epochs': args['epochs'],
+        'epochs': args['epochs'],
         'General/epochs': args['epochs'],
-        # 'batch': args['batch_size'],
+        'batch': args['batch_size'],
         'General/batch': args['batch_size'],
-        # 'learning_rate': args['learning_rate'],
+        'learning_rate': args['learning_rate'],
         'General/learning_rate': args['learning_rate'],
     }
     # objective_metric_title='validation',
