@@ -27,7 +27,7 @@ def Training():
     # === Parameters from pipeline ===
     args = {
         'input_dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',
-        'hpo_task_id': '8b9c6a6557f24027b1cb589b80d43dc9',
+        'hpo_task_id': '7db70dac4cfa45388bc7af2b4cc21b72',
         'model_arch': 'yolo11s.pt',
         'img_size': 640,
         'epochs': 5,
