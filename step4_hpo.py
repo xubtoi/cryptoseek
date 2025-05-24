@@ -88,8 +88,8 @@ hpo_task = HyperParameterOptimizer(
         'General/test_queue': args['test_queue'],
         'epochs': args['epochs'],
         'General/epochs': args['epochs'],
-        'batch': args['batch'],
-        'General/batch': args['batch'],
+        'batch': args['batch_size'],
+        'General/batch': args['batch_size'],
         'learning_rate': args['learning_rate'],
         'General/learning_rate': args['learning_rate'],
     }
