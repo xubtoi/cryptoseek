@@ -29,7 +29,7 @@ args = task.connect(args)
 logger.info(f"Connected parameters: {args}")
 
 # Execute the task remotely
-task.execute_remotely()
+# task.execute_remotely()
 
 # # Get the dataset ID from pipeline parameters
 # dataset_id = task.get_parameter('General/processed_dataset_id')  # Get from General namespace
@@ -65,8 +65,8 @@ task.execute_remotely()
 hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
-        UniformIntegerParameterRange('num_epochs', min_value=20, max_value=100, step_size=20),
-        UniformIntegerParameterRange('batch_size', min_value=8, max_value=32, step_size=8),  # Reduced range
+        UniformIntegerParameterRange('epochs', min_value=20, max_value=100, step_size=20),
+        UniformIntegerParameterRange('batch', min_value=8, max_value=32, step_size=8),  # Reduced range
         UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],
     objective_metric_title='Metrics',
