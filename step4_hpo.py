@@ -29,7 +29,7 @@ args = task.connect(args)
 logger.info(f"Connected parameters: {args}")
 
 # Execute the task remotely
-task.execute_remotely()
+# task.execute_remotely()
 
 # # Get the dataset ID from pipeline parameters
 # dataset_id = task.get_parameter('General/processed_dataset_id')  # Get from General namespace
