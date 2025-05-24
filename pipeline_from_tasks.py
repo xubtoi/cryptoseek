@@ -16,7 +16,7 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_id='24a61ad5475b419cb613a017efbda512',
+        base_task_id='4ae5edfd7cee4ceda1986e6f1dc69cbe',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
         execution_queue=EXECUTION_QUEUE,
@@ -31,7 +31,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_id='e4caf42d153d43cebf19a3063d3f431e',
+        base_task_id='c966987f56184c0f9264c22a6fb89c71',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
         execution_queue=EXECUTION_QUEUE,
@@ -54,14 +54,15 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
-        base_task_id='d8e90e791b3044f6b13576edc294ee24',
+        base_task_id='f7e9ff83e9c340258ab093d1cf4d0783',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
         execution_queue=EXECUTION_QUEUE,
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',
             "General/input_dataset_name": 'Resized_Cityscapes',
-            "General/input_dataset_version": '1.0.2',     
+            "General/input_dataset_version": '1.0.2',
+            "General/input_dataset_id": '9fa4d7e8172b4c70867e77849813f2a5',
             "General/model_arch": 'yolo11s.pt',  # Model architecture (nano by default)
             "General/img_size": 640,
             "General/epochs": 200,
