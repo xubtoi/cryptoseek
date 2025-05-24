@@ -17,7 +17,7 @@ task = Task.init(project_name='CryptoSeek', task_name='Step 4 - Hyperparameter O
 args = {
     'base_train_task_id': 'e66005a3afc54219a5f210a610fd8fac',  # Will be set from pipeline
     'num_trials': 5,  # Reduced from 10 to 3 trials
-    'time_limit_minutes': 5,  # Reduced from 60 to 5 minutes
+    'time_limit_minutes': 60,  # Reduced from 60 to 5 minutes
     'run_as_service': False,
     'test_queue': 'pipeline',  # Queue for test tasks
     'dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',  # Will be set from pipeline
@@ -29,7 +29,7 @@ args = task.connect(args)
 logger.info(f"Connected parameters: {args}")
 
 # Execute the task remotely
-# task.execute_remotely()
+task.execute_remotely()
 
 # # Get the dataset ID from pipeline parameters
 # dataset_id = task.get_parameter('General/processed_dataset_id')  # Get from General namespace
@@ -66,7 +66,7 @@ hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
         UniformIntegerParameterRange('epochs', min_value=20, max_value=40, step_size=20),
-        UniformIntegerParameterRange('batch', min_value=8, max_value=32, step_size=8),  # Reduced range
+        UniformIntegerParameterRange('batch', min_value=16, max_value=32, step_size=8),  # Reduced range
         UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],
     objective_metric_title='Metrics',

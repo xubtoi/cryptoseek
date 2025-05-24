@@ -2,6 +2,7 @@ from clearml import PipelineController, PipelineDecorator, Task
 import os
 
 EXECUTION_QUEUE = 'pipeline'
+EXECUTION_MAIN = 'main'
 
 def run_pipeline():
     pipe = PipelineController(
@@ -77,7 +78,7 @@ def run_pipeline():
         base_task_id='e5d11ac6954a44a48ee4efa6f83f6972',
         # base_task_project="AI_Studio_Demo",
         # base_task_name="HPO: Train Model",
-        execution_queue=EXECUTION_QUEUE,
+        execution_queue=EXECUTION_MAIN,
         parameter_override={
             "General/dataset_id": "${stage_process.parameters.General/output_id}",
             "General/test_queue": EXECUTION_QUEUE,

@@ -24,7 +24,7 @@ def Training():
         'input_dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',     
         'model_arch': 'yolo11s.pt',  # Model architecture (nano by default)
         'img_size': 640,
-        'epochs': 200,
+        'epochs': 10,
         'learning_rate': 0.001,
         'batch': 16
     }
