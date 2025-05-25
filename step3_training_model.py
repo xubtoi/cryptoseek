@@ -20,10 +20,11 @@ def Training():
     args = {
         'input_dataset_project': 'CryptoSeek',
         'input_dataset_name': 'Resized_Cityscapes',
-        'input_dataset_version': '1.0.2',     
+        'input_dataset_version': '1.0.2',
+        'input_dataset_id': '9fa4d7e8172b4c70867e77849813f2a5',     
         'model_arch': 'yolo11s.pt',  # Model architecture (nano by default)
         'img_size': 640,
-        'epochs': 200,
+        'epochs': 10,
         'learning_rate': 0.001,
         'batch': 16
     }
@@ -33,9 +34,10 @@ def Training():
 
     # === Load YOLO-format Dataset (v1.0.4) ===
     dataset = Dataset.get(
-        dataset_project=args['input_dataset_project'],
-        dataset_name=args['input_dataset_name'],
-        dataset_version=args['input_dataset_version']
+        dataset_id=args['input_dataset_id']
+        # dataset_project=args['input_dataset_project'],
+        # dataset_name=args['input_dataset_name'],
+        # dataset_version=args['input_dataset_version']
     )
     local_dataset_path = dataset.get_local_copy()
 
@@ -70,7 +72,7 @@ def Training():
         augment=True,
         hsv_h=0.015, hsv_s=0.7, hsv_v=0.4,
         degrees=10.0, translate=0.1, scale=0.5, shear=2.0,
-        patience=40,
+        patience=30,
         conf=0.25 
     )
 
@@ -93,10 +95,10 @@ def Training():
                 logger.report_scalar("Metrics", "Precision", row['metrics/precision(B)'], iteration=idx)
             if 'metrics/recall(B)' in row:
                 logger.report_scalar("Metrics", "Recall", row['metrics/recall(B)'], iteration=idx)
-            if 'metrics/mAP_0.5(B)' in row:
-                logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP_0.5(B)'], iteration=idx)
-            if 'metrics/mAP_0.5:0.95(B)' in row:
-                logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP_0.5:0.95(B)'], iteration=idx)
+            if 'metrics/mAP50(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5", row['metrics/mAP50(B)'], iteration=idx)
+            if 'metrics/mAP50-95(B)' in row:
+                logger.report_scalar("Metrics", "mAP@0.5:0.95", row['metrics/mAP50-95(B)'], iteration=idx)
 
     # === Upload best.pt as ClearML artifact ===
     best_model_path = os.path.join(save_dir, "weights", "best.pt")

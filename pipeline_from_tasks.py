@@ -2,12 +2,13 @@ from clearml import PipelineController, PipelineDecorator, Task
 import os
 
 EXECUTION_QUEUE = 'pipeline'
+EXECUTION_MAIN = 'main'
 
 def run_pipeline():
     pipe = PipelineController(
         name="CryptoSeek Full Pipeline",
         project="CryptoSeek",
-        version="0.0.1",
+        version="0.0.2",
         add_pipeline_tags=False
     )
 
@@ -16,7 +17,7 @@ def run_pipeline():
     # Step 1: Create dataset artifact
     pipe.add_step(
         name="stage_data",
-        base_task_id='24a61ad5475b419cb613a017efbda512',
+        base_task_id='8646a14bd3d34cfd9dc0fd257b8797b5',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 1 - Dataset Artifact",
         execution_queue=EXECUTION_QUEUE,
@@ -31,7 +32,7 @@ def run_pipeline():
     pipe.add_step(
         name="stage_process",
         parents=["stage_data"],
-        base_task_id='e4caf42d153d43cebf19a3063d3f431e',
+        base_task_id='9cb553292be3469d91afeaa25f6112fd',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 2 - Dataset Preprocessing",
         execution_queue=EXECUTION_QUEUE,
@@ -54,20 +55,53 @@ def run_pipeline():
     pipe.add_step(
         name="stage_train",
         parents=["stage_process"],
-        base_task_id='d8e90e791b3044f6b13576edc294ee24',
+        base_task_id='7745b9050c9f466ea1931f1a95e77682',
         # base_task_project="CryptoSeek",
         # base_task_name="Step 3 - Training Model",
         execution_queue=EXECUTION_QUEUE,
         parameter_override={
             "General/input_dataset_project": 'CryptoSeek',
             "General/input_dataset_name": 'Resized_Cityscapes',
-            "General/input_dataset_version": '1.0.2',     
+            "General/input_dataset_version": '1.0.2',
+            "General/input_dataset_id": '9fa4d7e8172b4c70867e77849813f2a5',
             "General/model_arch": 'yolo11s.pt',  # Model architecture (nano by default)
             "General/img_size": 640,
-            "General/epochs": 200,
+            "General/epochs": 5,
             "General/learning_rate": 0.001,
             "General/batch": 16
         },
+    )
+
+    pipe.add_step(
+        name="stage_hpo",
+        parents=["stage_train", "stage_process"],
+        base_task_id='e919e95feba24c1f9ad176dcec5ab1ce',
+        # base_task_project="AI_Studio_Demo",
+        # base_task_name="HPO: Train Model",
+        execution_queue=EXECUTION_MAIN,
+        parameter_override={
+            "General/dataset_id": "${stage_process.parameters.General/output_id}",
+            "General/test_queue": EXECUTION_QUEUE,
+            "General/num_trials": 5,
+            "General/time_limit_minutes": 60,
+            "General/run_as_service": False,
+            "General/base_train_task_id": "${stage_train.id}"
+        }
+    )
+    
+    pipe.add_step(
+        name="stage_final",
+        parents=["stage_hpo", "stage_process"],
+        base_task_id='973e716615e24a4ab83208d9285ad970',
+        # base_task_project="CryptoSeek",
+        # base_task_name="Step 5 - Final Model Training",
+        execution_queue=EXECUTION_QUEUE,
+        parameter_override={
+            "General/input_dataset_id": "${stage_process.parameters.General/output_id}",
+            "General/hpo_task_id": "${stage_hpo.id}",
+            "General/model_arch": "yolo11s.pt",
+            "General/epochs": 100,
+        }
     )
 
     # Choose one of the launch methods

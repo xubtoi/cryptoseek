@@ -15,7 +15,7 @@ task = Task.init(project_name='CryptoSeek', task_name='Step 4 - Hyperparameter O
 
 # Connect parameters
 args = {
-    'base_train_task_id': 'c0b726853a084f4c94e6a2661aa7d7fa',  # Will be set from pipeline
+    'base_train_task_id': 'e66005a3afc54219a5f210a610fd8fac',  # Will be set from pipeline
     'num_trials': 5,  # Reduced from 10 to 3 trials
     'time_limit_minutes': 30,  # Reduced from 60 to 5 minutes
     'run_as_service': False,
@@ -65,8 +65,8 @@ task.execute_remotely()
 hpo_task = HyperParameterOptimizer(
     base_task_id=args['base_train_task_id'],
     hyper_parameters=[
-        UniformIntegerParameterRange('num_epochs', min_value=50, max_value=200, step_size=50),
-        UniformIntegerParameterRange('batch_size', min_value=8, max_value=32, step_size=8),  # Reduced range
+        UniformIntegerParameterRange('epochs', min_value=20, max_value=40, step_size=20),
+        UniformIntegerParameterRange('batch', min_value=16, max_value=32, step_size=8),  # Reduced range
         UniformParameterRange('learning_rate', min_value=1e-4, max_value=1e-2),  # Reduced range
     ],
     objective_metric_title='Metrics',
@@ -82,14 +82,12 @@ hpo_task = HyperParameterOptimizer(
     execution_queue=args['test_queue'],
     save_top_k_tasks_only=2,
     parameter_override={
-        'processed_dataset_id': args['dataset_id'],
-        'General/processed_dataset_id': args['dataset_id'],
-        'test_queue': args['test_queue'],
-        'General/test_queue': args['test_queue'],
+        'input_dataset_id': args['dataset_id'],
+        'General/input_dataset_id': args['dataset_id'],
         'epochs': args['epochs'],
         'General/epochs': args['epochs'],
-        'batch': args['batch'],
-        'General/batch': args['batch'],
+        'batch': args['batch_size'],
+        'General/batch': args['batch_size'],
         'learning_rate': args['learning_rate'],
         'General/learning_rate': args['learning_rate'],
     }
@@ -142,7 +140,7 @@ try:
         best_params = best_exp.get_parameters()
         metrics = best_exp.get_last_scalar_metrics()
         # best_accuracy = metrics['validation']['accuracy'] if metrics and 'validation' in metrics and 'accuracy' in metrics['validation'] else None
-        best_map = metrics['Metrics']['mAP@0.5']['value'] if 'Metrics' in metrics and 'mAP@0.5' in metrics['Metrics'] else None
+        best_map = metrics['Metrics']['mAP@0.5'] if 'Metrics' in metrics and 'mAP@0.5' in metrics['Metrics'] else None
         
         # Log detailed information about the best experiment
         logger.info("Best hyperparameters:")
